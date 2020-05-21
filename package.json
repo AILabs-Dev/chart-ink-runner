@@ -1,0 +1,21 @@
+{
+    "name": "madison-sell",
+    "description": "Description",
+    "main": "main.js",
+    "bin": "main.js",
+    "scripts": {
+        "build": "nexe main.js"
+    },
+    "dependencies": {
+        "async-lock": "^1.2.2",
+        "cheerio": "^1.0.0-rc.3",
+        "jsdom": "16.2.2",
+        "request": "^2.88.2",
+        "ws": "7.2.5",
+        "express": "4.17.1"
+    },
+    "devDependencies": {
+        "nexe": "^3.3.2",
+        "pkg": "^4.4.8"
+    }
+}

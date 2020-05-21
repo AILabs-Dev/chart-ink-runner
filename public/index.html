@@ -1,0 +1,263 @@
+<html>
+    <head>
+        <title>Trade table</title>
+        <link rel='stylesheet' type='text/css' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css'>
+    </head>
+    <body style='padding:16px;'>
+        <script type='text/javascript'>
+            Date.prototype.yyyymmdd = function () {
+                var mm = this.getMonth() + 1; // getMonth() is zero-based
+                var dd = this.getDate();
+
+                return [this.getFullYear(),
+                (mm > 9 ? '' : '0') + mm,
+                (dd > 9 ? '' : '0') + dd
+                ].join('-');
+            };
+            var fileDate = new Date().yyyymmdd();
+        </script>
+        <div>
+            <label for='date' style='margin-left: 16px;'>Specify the date:</label>
+            <input type='text' id='date'/>
+            <script type='text/javascript'>
+                document.getElementById('date').value = new Date().yyyymmdd();
+            </script>
+            <input type='button' style='margin-left: 8px;' value='Update' onclick="javascript:window.fileDate=document.getElementById('date').value"/>
+        </div>
+        <div id='table-container-error'>
+
+        </div>
+        <div id='table-container'>
+            
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <script type='text/javascript'>
+            function calculateCharges(type, entryPrice, exitPrice, quantity){
+                entryPrice = entryPrice * quantity;
+                exitPrice = exitPrice * quantity;
+                //brokerage, transaction, gst, stt, stamp_duty
+                var total, brokerage, transaction, gst, stt, stampDuty;
+
+                var [buy, sell] = ((type)? [entryPrice, exitPrice]: [exitPrice, entryPrice]);
+                var both = buy + sell;
+
+                brokerage = Math.min((0.0003 * both), 20);
+                transaction = (0.0000325 * both);
+                gst = (0.18 * (brokerage + transaction));
+                stampDuty = (0.00006 * both);
+                stt = (0.00025 * sell);
+                total = brokerage + transaction + gst + stt + stampDuty;
+                return total;
+            }
+
+            $(document).ready(function(){
+                setInterval(update, 2500);
+            })
+
+            function update(){
+                //get all the csv data
+                $.ajax({
+                    url: fileDate + ".csv",
+                    dataType: "text",
+                    crossDomain: true,
+                    success: function(data){ 
+                        var innerHTML = createTable(data);
+                        innerHTML = doOperation(data) + innerHTML;
+                        document.getElementById('table-container').innerHTML = innerHTML;
+                         document.getElementById('table-container-error').innerHTML = '';
+                    },
+                    error: function(){
+                        document.getElementById('table-container-error').innerHTML = '<p style="color: red;">Either the date is not in valid format or the file is not present</p>';
+                    }
+                })
+            }  
+
+            function createTable(data) {
+                var rows = data.split('\n');
+                var no_of_columns = 0;
+                var tableData = `<table class='table table-bordered table-striped'>
+                    ${(function(){
+                        var result = '';
+                        for(var row of rows){
+                            if(result == ''){
+                                var header = row.split(',');
+                                no_of_columns = header.length;
+                                result = result + '<thead>';
+                                header = header.map(h => `<th>${h}</th>`);
+                                result = result + `<tr>${header}</tr>`;
+                                result = result + '</thead>';
+                                result = result + '<tbody>';
+                            }else{
+                                row = row.split(',');
+                                sliced = row.slice(0, no_of_columns);
+                                var rowData = `<tr class='table-${row[no_of_columns]}'>
+                                    ${(function(){
+                                        var r = '';
+                                        for(var data of sliced){
+                                            if(isFloat(data)){
+                                                data = getFloat(data);
+                                            }
+                                            r = r + `<td>${data}</td>`;
+                                        }
+                                        return r;
+                                    })()}
+                                </tr>`;
+                                result = result + rowData;
+                            }
+                        }
+                        return result;
+                    })()}
+                </tbody>
+                </table>
+                `;
+                return tableData;
+
+            }
+
+            function doOperation(rows){
+                rows= rows.split('\n');
+                var result = null;
+                var keys = [];
+                var total = null;
+                for(var row of rows){
+                    if(result == null){
+                        keys = row.split(',');
+                        result = [];
+                    }else{
+                        values = row.split(',');
+                        if(total == null){
+                            total = values;
+                        }
+                        result.push(createObject(keys, values));
+                    }
+                }
+
+                keys = ['STRATEGY', 'TOTAL', 'PENDING', 'EXECUTED', 'TARGETED', 'STOPLOSSED', 'MARGIN USED', 'PL', 'CHARGES', 'NET'];
+                values = [];
+                for(var d of result){
+                    var name = d['STRATEGY NAME'];
+                    var type = d['TYPE'];
+                    var price = parseFloat(d['PRICE']);
+                    var exitPrice = parseFloat(d['EXIT PRICE']);
+                    var quantity = parseInt(d['QUANTITY']);
+                    var pl = parseFloat(d['PL']);
+                    var charges = calculateCharges(type, price, exitPrice, quantity);
+                    var status = d['STATUS'];
+                    if(hasNaN([price, exitPrice, quantity, pl, charges])){
+                        continue;
+                    }
+
+                    value = values.filter(v => v[0] == name)[0] || null;
+                    if(value == null){
+                        values.push([
+                            name, //STRATEGY
+                            1, //TOTAL
+                            ((status == 'TRIGGER PENDING')? 1: 0), //PENDING
+                            ((status != 'TRIGGER PENDING')? 1 : 0), //EXECUTED
+                            ((status == 'TARGET TRIGGERED')? 1: 0), //TARGETED
+                            ((status == 'STOPLOSS TRIGGERED')? 1: 0), //STOPLOSSED
+                            (price * quantity), //MARGIN USED
+                            pl, //PL
+                            charges, //CHARGES
+                            pl - charges]) //NET
+                    }else{
+                        //TOTAL
+                        value[1] = value[1] + 1;
+                        if(status == 'TRIGGER PENDING'){
+                            //PENDING
+                            value[2] = value[2] + 1;
+                        }else{
+                            //EXECUTED
+                            value[3] = value[3] + 1;
+                        }
+                        //TARGETED
+                        if(status == 'TARGET TRIGGERED'){
+                            value[4] = value[4] + 1;
+                        }
+                        //STOPLOSSED
+                        if(status == 'STOPLOSS TRIGGERED'){
+                            value[5] = value[5] + 1;
+                        }
+                        //MARGIN USED
+                        value[6] = value[6] + (price * quantity);
+
+                        //PL
+                        value[7] = value[7] + pl;
+
+                        //CHARGES
+                        value[8] = value[8] + charges;
+
+                        //NET
+                        value[9] = value[9] + pl - charges;            
+                    }
+                }
+                var total = ['TOTAL', 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                total = values.reduce((a, c) => {
+                    return [
+                        'TOTAL', 
+                        a[1] + c[1], 
+                        a[2] + c[2], 
+                        a[3] + c[3], 
+                        a[4] + c[4], 
+                        a[5] + c[5], 
+                        a[6] + c[6], 
+                        a[7] + c[7],
+                        a[8] + c[8],
+                        a[9] + c[9]
+                    ]; 
+                }, total)
+                total.push('info');
+                values.push(total);
+                return createTable(getWholeString(keys, values));
+            }
+
+            function getWholeString(keys, values){
+                var result = '';
+                keys.join(',');
+                for(var i=0; i < values.length; i++){
+                    values[i] = values[i].join(',');
+                }
+                values = values.join('\n');
+                if(values.length > 0){
+                    return keys + '\n' + values;
+                }else{
+                    return keys;
+                }
+            }
+
+            function createObject(keys, values){
+                let obj = {};
+                for(var i=0; i < keys.length; i++){
+                    var key = keys[i];
+                    var value = values[i];
+                     Object.defineProperty(obj, key, {
+                        value
+                     })
+                }
+                return obj;
+            }
+
+            function isFloat(data){
+                data = parseFloat(data);
+                return (!isNaN(data) && typeof data == 'number' && parseInt(data) != data);
+            }
+
+            function getFloat(data){
+                 try {
+                    data = parseFloat(data).toFixed(2);
+                } catch (e) {};
+                return data;
+            }
+
+            function hasNaN(array){
+                for(var e of array){
+                    if(isNaN(e)){
+                        return true;
+                    }
+                }
+                return false;
+            }
+        </script>
+    </body>
+</html>

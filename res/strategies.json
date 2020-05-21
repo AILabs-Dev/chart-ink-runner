@@ -1,0 +1,318 @@
+{
+    "entries": [{
+        "name": "MADISON SELL",
+        "strategy": "MADISON SELL",
+        "transactionType": "sell",
+        "frequency": 100,
+        "live": false,
+        "price": 0.05,
+        "target": {
+            "func": "percent",
+            "value": 20
+        },
+        "stoploss": {
+            "func": "dayshigh"
+        },
+        "userIds": ["IV8690", "QI4683"],
+        "beginOn": "10:02:00",
+        "endOn": "15:15:00"
+    }, {
+        "name": "SECONDARY GAP UP OPEN HIGH SHORT TARGET 2 SL 2",
+        "strategy": "SECONDARY GAP UP OPEN HIGH SHORT",
+        "transactionType": "sell",
+        "frequency": 5,
+        "live": false,
+        "price": 0.05,
+        "target": {
+            "func": "percent",
+            "value": 2
+        },
+        "stoploss": {
+            "func": "percent",
+            "value": 2
+        },
+        "userIds": ["IV8690", "QI4683"],
+        "beginOn": "09:15:00",
+        "endOn": "11:00:00"
+    }, {
+        "name": "SECONDARY GAP UP OPEN HIGH SHORT TARGET 2 SL 1",
+        "strategy": "SECONDARY GAP UP OPEN HIGH SHORT",
+        "transactionType": "sell",
+        "frequency": 5,
+        "live": false,
+        "price": 0.05,
+        "target": {
+            "func": "percent",
+            "value": 2
+        },
+        "stoploss": {
+            "func": "percent",
+            "value": 1
+        },
+        "userIds": ["IV8690", "QI4683"],
+        "beginOn": "09:15:00",
+        "endOn": "11:00:00"
+    }, {
+        "name": "SECONDARY GAP UP OPEN HIGH SHORT TARGET 2 SL 0.5",
+        "strategy": "SECONDARY GAP UP OPEN HIGH SHORT",
+        "transactionType": "sell",
+        "frequency": 5,
+        "live": false,
+        "price": 0.05,
+        "target": {
+            "func": "percent",
+            "value": 2
+        },
+        "stoploss": {
+            "func": "percent",
+            "value": 0.5
+        },
+        "userIds": ["IV8690", "QI4683"],
+        "beginOn": "09:15:00",
+        "endOn": "11:00:00"
+    }, {
+        "name": "SECONDARY GAP UP OPEN HIGH SHORT KATHIRAVAN",
+        "strategy": "SECONDARY GAP UP OPEN HIGH SHORT",
+        "transactionType": "sell",
+        "frequency": 5,
+        "live": false,
+        "price": 0.05,
+        "target": {
+            "func": "percent",
+            "value": 1.5
+        },
+        "stoploss": {
+            "func": "dayshigh"
+        },
+        "userIds": ["IV8690", "QI4683"],
+        "beginOn": "09:16:00",
+        "endOn": "10:00:00"
+    }, {
+        "name": "SECONDARY GAP DOWN OPEN LOW LONG TARGET 2 SL 2",
+        "strategy": "SECONDARY GAP DOWN OPEN LOW LONG",
+        "transactionType": "buy",
+        "frequency": 5,
+        "live": false,
+        "price": 0.05,
+        "target": {
+            "func": "percent",
+            "value": 2
+        },
+        "stoploss": {
+            "func": "percent",
+            "value": 2
+        },
+        "userIds": ["IV8690", "QI4683"],
+        "beginOn": "09:15:00",
+        "endOn": "11:00:00"
+    }, {
+        "name": "SECONDARY GAP DOWN OPEN LOW LONG TARGET 2 SL 1",
+        "strategy": "SECONDARY GAP DOWN OPEN LOW LONG",
+        "transactionType": "buy",
+        "frequency": 5,
+        "live": false,
+        "price": 0.05,
+        "target": {
+            "func": "percent",
+            "value": 2
+        },
+        "stoploss": {
+            "func": "percent",
+            "value": 1
+        },
+        "userIds": ["IV8690", "QI4683"],
+        "beginOn": "09:15:00",
+        "endOn": "11:00:00"
+    }, {
+        "name": "SECONDARY GAP DOWN OPEN LOW LONG TARGET 2 SL 0.5",
+        "strategy": "SECONDARY GAP DOWN OPEN LOW LONG",
+        "transactionType": "buy",
+        "frequency": 5,
+        "live": false,
+        "price": 0.05,
+        "target": {
+            "func": "percent",
+            "value": 2
+        },
+        "stoploss": {
+            "func": "percent",
+            "value": 0.5
+        },
+        "userIds": ["IV8690", "QI4683"],
+        "beginOn": "09:15:00",
+        "endOn": "11:00:00"
+    }, {
+        "name": "SECONDARY GAP DOWN OPEN LOW LONG KATHIRAVAN",
+        "strategy": "SECONDARY GAP DOWN OPEN LOW LONG",
+        "transactionType": "buy",
+        "frequency": 5,
+        "live": false,
+        "price": 0.05,
+        "target": {
+            "func": "percent",
+            "value": 1.5
+        },
+        "stoploss": {
+            "func": "dayslow"
+        },
+        "userIds": ["IV8690", "QI4683"],
+        "beginOn": "09:16:00",
+        "endOn": "10:00:00"
+    }, {
+        "name": "BULLISH ENGULFING",
+        "strategy": "BULLISH ENGULFING",
+        "transactionType": "buy",
+        "frequency": 1,
+        "live": true,
+        "price": 0.05,
+        "target": {
+            "func": "percent",
+            "value": 1
+        },
+        "stoploss": {
+            "func": "percent",
+            "value": 1
+        },
+        "userIds": ["IV8690", "QI4683"],
+        "beginOn": "09:15:00",
+        "endOn": "11:00:00"
+    }, {
+        "name": "RED RED PREVIOUS OPEN SELL PERCENT",
+        "strategy": "RED RED PREVIOUS OPEN SELL",
+        "transactionType": "sell",
+        "frequency": 10,
+        "live": false,
+        "price": 0.1,
+        "target": {
+            "func": "percent",
+            "value": 1
+        },
+        "stoploss": {
+            "func": "percent",
+            "value": 1
+        },
+        "userIds": ["IV8690","QI4683"],
+        "beginOn": "09:30:00",
+        "endOn": "15:00:00"
+    }, {
+        "name": "RED RED PREVIOUS OPEN SELL DAYS HIGH",
+        "strategy": "RED RED PREVIOUS OPEN SELL",
+        "transactionType": "sell",
+        "frequency": 10,
+        "live": false,
+        "price": 0.1,
+        "target": {
+            "func": "percent",
+            "value": 3
+        },
+        "stoploss": {
+            "func": "dayshigh"
+        },
+        "userIds": ["IV8690", "QI4683"],
+        "beginOn": "09:30:00",
+        "endOn": "15:00:00"
+    }, {
+        "name": "GREEN GREEN PREVIOUS OPEN BUY PERCENT",
+        "strategy": "GREEN GREEN PREVIOUS OPEN BUY",
+        "transactionType": "buy",
+        "frequency": 10,
+        "live": false,
+        "price": 0.1,
+        "target": {
+            "func": "percent",
+            "value": 1
+        },
+        "stoploss": {
+            "func": "percent",
+            "value": 1
+        },
+        "userIds": ["IV8690", "QI4683"],
+        "beginOn": "09:30:00",
+        "endOn": "15:00:00"
+    }, {
+        "name": "GREEN GREEN PREVIOUS OPEN BUY DAYS LOW",
+        "strategy": "GREEN GREEN PREVIOUS OPEN BUY",
+        "transactionType": "buy",
+        "frequency": 10,
+        "live": false,
+        "price": 0.1,
+        "target": {
+            "func": "percent",
+            "value": 3
+        },
+        "stoploss": {
+            "func": "dayslow"
+        },
+        "userIds": ["IV8690", "QI4683"],
+        "beginOn": "09:30:00",
+        "endOn": "15:00:00"
+    }, {
+        "name": "BEARISH ENGULFING 5 MINUTE",
+        "strategy": "BEARISH ENGULFING 5 MINUTE",
+        "transactionType": "sell",
+        "frequency": 10,
+        "live": false,
+        "price": 0.1,
+        "target": {
+            "func": "percent",
+            "value": 0.5
+        },
+        "stoploss": {
+            "func": "percent",
+            "value": 0.5
+        },
+        "userIds": [
+            "IV8690",
+            "QI4683"
+        ],
+        "beginOn": "09:30:00",
+        "endOn": "15:00:00"
+    }, {
+        "name": "BULLISH ENGULFING 5 MINUTE",
+        "strategy": "BULLISH ENGULFING 5 MINUTE",
+        "transactionType": "buy",
+        "frequency": 10,
+        "live": false,
+        "price": 0.05,
+        "target": {
+            "func": "percent",
+            "value": 0.5
+        },
+        "stoploss": {
+            "func": "percent",
+            "value": 0.5
+        },
+        "userIds": [
+            "IV8690",
+            "QI4683"
+        ],
+        "beginOn": "09:30:00",
+        "endOn": "15:00:00"
+    }],
+
+    "logics": [{
+        "name": "MADISON SELL",
+        "logic": "( {33489} ( [0] 15 minute close < [-1] 15 minute low and [ -1 ] 15 minute close >= [ -2 ] 15 minute low and( {33489} ( [-1] 15 minute high >= [-2] 15 minute max( 20 , [0] 15 minute high ) or( {33489} ( [-2] 15 minute high >= [-3] 15 minute max( 20 , [0] 15 minute high ) and [-1] 15 minute low >= [-2] 15 minute low ) ) or( {33489} ( [-3] 15 minute high >= [-4] 15 minute max( 20 , [0] 15 minute high ) and [-2] 15 minute low >= [-3] 15 minute low and [-1] 15 minute low >= [-2] 15 minute low ) ) or( {33489} ( [-4] 15 minute high >= [-5] 15 minute max( 20 , [0] 15 minute high ) and [-3] 15 minute low >= [-4] 15 minute low and [-2] 15 minute low >= [-3] 15 minute low and [-1] 15 minute low >= [-2] 15 minute low ) ) ) ) and latest close > 100 and latest close < 1000 ) )"
+    }, {
+        "name": "SECONDARY GAP UP OPEN HIGH SHORT",
+        "logic": "( {33489} ( latest open <= latest high and latest open - 1 day ago close > 1 and latest close <= 1000 and latest close >= 100 and latest high - latest open <= 0.03 and latest volume > 10000 ) ) "
+    }, {
+        "name": "SECONDARY GAP DOWN OPEN LOW LONG",
+        "logic": "( {33489} ( latest open >= latest low and 1 day ago close - latest open >= 1 and latest close <= 1000 and latest close >= 100 and latest open - latest low <= 0.03 and latest volume > 10000 ) ) "
+    }, {
+        "name": "BULLISH ENGULFING",
+        "logic": "( {33489} ( 1 day ago close < 1 day ago open and latest close > 1 day ago open and latest open < 1 day ago close and latest high > 1 day ago high and latest low < 1 day ago low ) )"
+    }, {
+        "name": "RED RED PREVIOUS OPEN SELL",
+        "logic": "( {33489} ( [=1] 15 minute close < [=1] 15 minute open and [=-1] 15 minute close < [=-1] 15 minute open and latest close > 100 and latest close < 1000 and ( {33489} ( ( {33489} ( latest close < [=1] 15 minute low and 1 day ago  close >= [ =-1 ] 15 minute low and [=1] 15 minute low < [=-1] 15 minute low ) ) or ( {33489} ( latest close < [=-1] 15 minute low and 1 day ago  close >= [ =-2 ] 15 minute low and [=-1] 15 minute low < [=1] 15 minute low ) ) ) ) ) ) "
+    }, {
+        "name": "GREEN GREEN PREVIOUS OPEN BUY",
+        "logic": "( {33489} ( [=1] 15 minute close > [=1] 15 minute open and [=-1] 15 minute close > [=-1] 15 minute open and latest close > 100 and latest close < 1000 and ( {33489} ( ( {33489} ( latest close > [=1] 15 minute high and 1 day ago  close <= [ =-1 ] 15 minute high and [=1] 15 minute high > [=-1] 15 minute high ) ) or ( {33489} ( latest close > [=-1] 15 minute high and 1 day ago  close <= [ =-2 ] 15 minute high and [=-1] 15 minute high > [=1] 15 minute high ) ) ) ) ) ) "
+    }, {
+        "name": "BEARISH ENGULFING 5 MINUTE",
+        "logic": "( {33489} ( ( {33489} ( [-1] 5 minute high <= [0] 5 minute high and [-1] 5 minute low >= [0] 5 minute close and [-1] 5 minute close > [-1] 5 minute open and [0] 5 minute close < [0] 5 minute open and [0] 5 minute low < [0] 5 minute vwap and [ -1 ] 5 minute low >= [ -1 ] 5 minute vwap ) ) ) ) "
+    }, {
+        "name": "BULLISH ENGULFING 5 MINUTE",
+        "logic": "( {33489} ( [-1] 5 minute open > [-1] 5 minute close and [0] 5 minute close > [0] 5 minute open and [0] 5 minute close > [-1] 5 minute open and [0] 5 minute open < [-1] 5 minute close and ( [-1] 5 minute open - [-1] 5 minute close ) > ( [-1] 5 minute high - [-1] 5 minute open ) + ( [-1] 5 minute close - [-1] 5 minute low ) and ( [0] 5 minute close - [0] 5 minute open ) > ( [0] 5 minute high - [0] 5 minute close ) + ( [0] 5 minute open - [0] 5 minute low ) and [0] 5 minute close > 100 and [0] 5 minute low < [-1] 5 minute min ( 5 , [0] 5 minute low ) and [0] 5 minute high > [-1] 5 minute high and [0] 5 minute low < [-1] 5 minute low ) ) " 
+    }]
+}
